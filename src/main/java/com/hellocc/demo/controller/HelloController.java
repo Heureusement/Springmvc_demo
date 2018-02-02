@@ -1,30 +1,27 @@
 package com.hellocc.demo.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-
+/**
+ * @author dongyu
+ * @create 2018-02-02
+ */
+// 注解标注此类为springmvc的controller，url映射为"/home"
 @Controller
 @RequestMapping("/hello")
 public class HelloController {
+    //添加一个日志器
+    private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index(HttpServletRequest request) {
+    //映射一个action
+    @RequestMapping("/index")
+    public  String index(){
+        //输出日志文件
+        logger.info("the first jsp pages");
+        //返回一个index.jsp这个视图
         return "index";
-    }
-
-    @RequestMapping(value = "/json", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public String json(HttpServletRequest request) {
-        HashMap<String, Object> responseBody = new HashMap<String, Object>();
-        responseBody.put("code", 200);
-        responseBody.put("message", "Create success.");
-        return JSON.toJSONString(responseBody, SerializerFeature.WriteNonStringValueAsString);
     }
 }
