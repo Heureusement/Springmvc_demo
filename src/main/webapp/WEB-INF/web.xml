@@ -28,6 +28,11 @@
             org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
 
+    <!--
+    load-on-startup：表示启动容器时初始化该Servlet；
+    url-pattern：表示哪些请求交给Spring Web MVC处理，
+    “/” 是用来定义默认servlet映射的。也可以如“*.html”表示拦截所有以html为扩展名的请求。
+    -->
     <servlet>
         <servlet-name>spring</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -44,6 +49,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!--解决POST方式造成的中文乱码问题，配置后项目及所有页面的编码均为UTF-8-->
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
